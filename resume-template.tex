@@ -1,0 +1,165 @@
+\documentclass[a4paper,12pt]{article}
+
+% ---------- Engine & fonts (XeLaTeX) ----------
+\usepackage{fontspec} % font management for XeLaTeX/LuaLaTeX
+\defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
+
+% Body font: Times-like by default
+% \setmainfont{TeX Gyre Termes}
+\setmainfont{Times New Roman}
+
+
+% Heading/contact font (Palatino-like):
+\newfontfamily\HeadingFont{TeX Gyre Pagella}
+\newfontfamily\ContactFont{TeX Gyre Pagella}
+
+% ---------- Core packages you actually use ----------
+\usepackage{titlesec}
+\usepackage{color} % ok to keep; you only need basic \color
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{textcomp} % provides \textopenbullet
+
+% ---------- Page layout: single source of truth ----------
+% Tight but safe margins on A4; tune here only.
+\usepackage[
+  a4paper,
+  top=10mm,
+  bottom=12mm,
+  left=12mm,
+  right=12mm,
+  headheight=12pt,
+  footskip=8pt
+]{geometry}
+
+% ---------- Header/footer ----------
+\pagestyle{fancy}
+\fancyhf{} % clear header/footer
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ---------- General tweaks ----------
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0pt}
+
+% ---------- Section formatting ----------
+\titleformat{\section}
+  {\vspace{-6pt}\HeadingFont\scshape\raggedright\large}
+  {}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+
+% ---------- Custom commands ----------
+\newcommand{\cvitem}[1]{
+  \item\small{
+    {#1\vspace{-2pt}}
+  }
+}
+
+\newcommand{\cvheading}[4]{
+  \vspace{-2pt}\item
+    {\ContactFont
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \small#3 & \small#4 \\
+    \end{tabular*}}\vspace{-7pt}
+}
+
+\newcommand{\cvheadingstart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\cvheadingend}{\end{itemize}}
+\newcommand{\cvitemstart}{\begin{itemize}[label=\textopenbullet]\justifying}
+\newcommand{\cvitemend}{\end{itemize}\vspace{-5pt}}
+
+\newcommand{\cvskill}[2]{\textbf{#1}: #2\par}
+
+\newcommand{\cvitemr}[2]{%
+  \item\small
+  \begin{tabularx}{\linewidth}{@{}X@{\hfill}r@{}}
+    #1 & \small #2
+  \end{tabularx}\vspace{-2pt}%
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\footnotesize$\bullet$}}$}
+
+% --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+
+% contact information
+\begin{center}
+  {\fontsize{20}{24}\selectfont John \textbf{\textsc{Doe}}\par}
+  \vspace{1pt}\small
+  \href{mailto:JohnDoe@gmail.com}{JohnDoe@gmail.com}
+  $\ \diamond\ $
+  \href{tel:+123456789}{(+1) 2345 6789}
+  $\ \diamond\ $
+  Github: \href{https://www.Github.com/johndoe/}{@JohnDoe}
+  $\ \diamond\ $
+  LinkedIn: \href{https://www.linkedin.com/in/JohnDoe/}{@JohnDoe}
+\end{center}
+
+\section{Personal Summary}
+something something
+
+\section{Education}
+\cvheadingstart
+  \cvheading
+    {National University of Singapore}{Singapore}
+    {Master of Management}{01/2024 - 08/2025}
+    \cvitemstart
+      \cvitemr{project 1}{08/2024 - 12/2024}
+      \cvitemr{project 2}{01/2025 - 05/2025}
+    \cvitemend
+  \cvheading
+    {National University of Singapore}{Singapore}
+    {Bachelor of International Business}{09/2018 - 06/2021}
+    \cvitemstart
+      \cvitem{something }
+      \cvitem{something}
+    \cvitemend
+\cvheadingend
+
+\section{Professional Experience}
+\cvheadingstart
+
+    \cvheading
+    {Open AI}{United States}
+    {\textit{Day dream professional.}}{08/2025 - current}
+    \cvitemstart
+      \cvitem{Ruled the world in dream.}
+      \cvitem{Waked up during night time.}
+    \cvitemend
+
+    \cvheading
+    {Boring Inc.}{Singapore}
+    {\textit{Meme reviewer}}{04/2022 - 03/2025}
+    \cvitemstart
+        \cvitem{Memes.}
+        \cvitem{Memes.}
+        \cvitem{And Memes.}
+    \cvitemend
+
+    % Creative
+    \cvheading
+    {Home Pte Ltd}{Singapore}
+    {\textit{Kids Department}}{09/2017 - 02/2018}
+    \cvitemstart
+        \cvitem{Know nothing.}
+        \cvitem{Do nothing by 50\%.}
+    \cvitemend
+\cvheadingend
+
+\section{Additional Information}
+    \cvskill{Languages}{English(Native), Mandarin(Native), French (A2), Japanese(Beginner)}
+    \cvskill{Skills}{Photography, Videography, Photoshop, SEO}
+
+\vspace{-5pt}
+
+\end{document}
